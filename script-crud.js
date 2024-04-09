@@ -36,20 +36,20 @@ function criarElementoTarefa(tarefa) {
     return li
 }
 
-btnaddtask.addEventListener('click', () =>{
+btnaddtask.addEventListener('click', () => {
     formaddtask.classList.toggle('hidden');
 })
 
-formaddtask.addEventListener('submit', (event) =>{
+formaddtask.addEventListener('submit', (event) => {
     event.preventDefault();
     const tarefa = {
         descrição: textarea.value
     }
     tarefas.push(tarefa)               //aqui funciona como um append para adicionar dentro da lista
-    localStorage.setItem('tarefas',JSON.stringify(tarefas))
+    localStorage.setItem('tarefas', JSON.stringify(tarefas))
 })
 
 tarefas.forEach(tarefa => {
-    const elementotarefa = criarElementoTarefa(tarefa)    
+    const elementotarefa = criarElementoTarefa(tarefa)
     ultarefas.append(elementotarefa)
 });
