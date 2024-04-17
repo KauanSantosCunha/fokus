@@ -6,6 +6,7 @@ const ultarefas = document.querySelector('.app__section-task-list')
 const btncanceltask = document.querySelector('.app__form-footer__button--cancel')
 const btndeletedtask = document.querySelector('.app__form-footer__button--delete')
 const tarefas = JSON.parse(localStorage.getItem('tarefas')) || []
+let taskativ = null
 
 function criarElementoTarefa(tarefa) {
     const li = document.createElement('li')
@@ -33,8 +34,7 @@ function criarElementoTarefa(tarefa) {
             tarefa.descricao = novatarefa
             upgradetask()
             return
-        }
-        
+        }      
     }
 
     const imagemBotao = document.createElement('img')
@@ -46,8 +46,18 @@ function criarElementoTarefa(tarefa) {
     li.append(botao)
 
     li.onclick = () => {
+        document.querySelectorAll('.app-task-item-activo')
+        .forEach(elemento =>{
+            elemento.classList.remove('app-task-item-activo')
+        })
+        if (taskativ == tarefa){
+            descriptiontask.textContent = ''
+            taskativ = null
+            return
+        }
         descriptiontask.textContent = tarefa.descricao
-        li.classList.add('.app__section-task-list-item-active')
+        taskativ = tarefa
+        li.classList.add('app-task-item-activo')
     }
     return li
 }   

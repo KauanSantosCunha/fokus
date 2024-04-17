@@ -376,15 +376,20 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 150%;
     color: var(--azul-profundo);
     font-family: Montserrat;
+    text-align: center;
 }
 
-.app__section-task-list-item-complete.app__section-task-list-item {
+.app__section-task-list-item-complete .app__section-task-list-item {
     background: var(--fundo-card-concludo);
     cursor: inherit;
 }
 
-.app__section-task-list-item-active.app__section-task-list-item {
-    border: 2px solid #FFF;
+.app__section-task-list-item-active .app__section-task-list-item {
+    border: 2px solid #FFFFFF;
+}
+
+.app-task-item-activo {
+    border: 2px solid #FFFFFF;
 }
 
 .app__section-task-list-item-complete .app__section-task-icon-status circle {

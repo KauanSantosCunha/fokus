@@ -94,6 +94,11 @@ const contagem = () => {
         tempoDecorridoEmSegundos = 5
         beep.play()
         alert('oks')
+        const focoativo = html.getAttribute('data-contexto') == 'foco'
+        if (focoativo) {
+            const event = new CustomEvent('eventoFinalizado')
+            document.dispatchEvent(event)
+        }
         startpausebt.textContent ='Começar';
         iconstartbt.setAttribute('src', 'imagens/play_arrow.png');
         return    
