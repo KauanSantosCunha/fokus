@@ -7,6 +7,7 @@ const btncanceltask = document.querySelector('.app__form-footer__button--cancel'
 const btndeletedtask = document.querySelector('.app__form-footer__button--delete')
 const tarefas = JSON.parse(localStorage.getItem('tarefas')) || []
 let taskativ = null
+let litaskativ = null
 
 function criarElementoTarefa(tarefa) {
     const li = document.createElement('li')
@@ -44,20 +45,27 @@ function criarElementoTarefa(tarefa) {
     li.append(svg)
     li.append(paragrafo)
     li.append(botao)
+    if (tarefa.completa){
+        li.classList.add('app__section-task-list-item-complete')
+        botao.setAttribute('disabled', 'disabled')
+    } else {
 
-    li.onclick = () => {
-        document.querySelectorAll('.app-task-item-activo')
-        .forEach(elemento =>{
-            elemento.classList.remove('app-task-item-activo')
-        })
-        if (taskativ == tarefa){
-            descriptiontask.textContent = ''
-            taskativ = null
-            return
+        li.onclick = () => {
+            document.querySelectorAll('.app-task-item-activo')
+            .forEach(elemento =>{
+                elemento.classList.remove('app-task-item-activo')
+            })
+            if (taskativ == tarefa){
+                descriptiontask.textContent = ''
+                taskativ = null
+                litaskativ = null
+                return
+            }
+            descriptiontask.textContent = tarefa.descricao
+            taskativ = tarefa
+            litaskativ = li
+            li.classList.add('app-task-item-activo')
         }
-        descriptiontask.textContent = tarefa.descricao
-        taskativ = tarefa
-        li.classList.add('app-task-item-activo')
     }
     return li
 }   
@@ -95,4 +103,15 @@ btncanceltask.addEventListener('click', () => {
 btndeletedtask.addEventListener('click', () => {
     textarea.value = ''
     formaddtask.classList.add('hidden')
+})
+
+document.addEventListener('eventoFinalizado', () => {
+    if (taskativ && litaskativ) {
+        litaskativ.classList.remove('app-task-item-activo')
+        litaskativ.classList.add('app__section-task-list-item-complete')
+        litaskativ.querySelector('button').setAttribute('disabled', 'disabled')
+        taskativ.completa = true
+        upgradetask()
+
+    }
 })

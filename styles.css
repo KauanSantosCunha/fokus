@@ -7,7 +7,7 @@
     --linear-botes: linear-gradient(180deg, #B872FF 0%, #144480 100%);
     --azul-profundo: #01080E;
     --fundo-card: rgba(255, 255, 255, 0.50);
-    --fundo-card-concludo: rgba(0, 244, 191, 0.40);
+    --fundo-card-concluido: rgba(0, 244, 191, 0.40);
 }
 
 [data-contexto="foco"] {
@@ -35,7 +35,7 @@ html {
 
 body {
     min-height: 100vh;
-    background: url("/imagens/pattern.png");
+    background: url("imagens/pattern.png");
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -379,10 +379,10 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
 }
 
-.app__section-task-list-item-complete .app__section-task-list-item {
-    background: var(--fundo-card-concludo);
+/* .app__section-task-list-item-complete .app__section-task-list-item {
+    background: var(--fundo-card-concluido);
     cursor: inherit;
-}
+} */
 
 .app__section-task-list-item-active .app__section-task-list-item {
     border: 2px solid #FFFFFF;
@@ -390,6 +390,11 @@ h1, h2, h3, h4, h5, h6 {
 
 .app-task-item-activo {
     border: 2px solid #FFFFFF;
+}
+
+.app__section-task-list-item-complete {
+    background: var(--fundo-card-concluido);
+    cursor: inherit;
 }
 
 .app__section-task-list-item-complete .app__section-task-icon-status circle {

@@ -18,10 +18,11 @@ const pause = new Audio ('sons/pause.mp3')
 const beep = new Audio ('sons/beep.mp3')
 musica.loop = true
 let intervalo = null
-const duracaoFoco = 1500; 
+const duracaoFoco = 1500;
 const duracaoDescansoCurto = 300; 
 const duracaoDescansoLongo = 900; 
-let tempoDecorridoEmSegundos = 1500
+// let tempoDecorridoEmSegundos = 1500;
+let tempoDecorridoEmSegundos = 15 
 
 
 inputmusica.addEventListener('change', () =>{
@@ -98,6 +99,7 @@ const contagem = () => {
         if (focoativo) {
             const event = new CustomEvent('eventoFinalizado')
             document.dispatchEvent(event)
+            // disparar um evento, serve para integrar 2 scripts.js
         }
         startpausebt.textContent ='Começar';
         iconstartbt.setAttribute('src', 'imagens/play_arrow.png');
