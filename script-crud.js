@@ -5,7 +5,9 @@ const descriptiontask = document.querySelector('.app__section-active-task-descri
 const ultarefas = document.querySelector('.app__section-task-list')
 const btncanceltask = document.querySelector('.app__form-footer__button--cancel')
 const btndeletedtask = document.querySelector('.app__form-footer__button--delete')
-const tarefas = JSON.parse(localStorage.getItem('tarefas')) || []
+const btnremovetask = document.querySelector('#btn-remover-concluidas')
+const btkremovealltask = document.querySelector('#btn-remover-todas')
+let tarefas = JSON.parse(localStorage.getItem('tarefas')) || []
 let taskativ = null
 let litaskativ = null
 
@@ -115,3 +117,15 @@ document.addEventListener('eventoFinalizado', () => {
 
     }
 })
+
+const removetask = (onlyComplete) => {
+    const selector = onlyComplete ? ".app__section-task-list-item-complete":".app__section-task-list-item"
+    document.querySelectorAll(selector).forEach(elemento => {
+        elemento.remove()
+    })
+    tarefas = onlyComplete ? tarefas.filter(tarefa => !tarefa.completa) : {}
+    upgradetask()
+}
+
+btnremovetask.onclick = () => removetask(true)
+btkremovealltask.onclick = () => removetask(false)
